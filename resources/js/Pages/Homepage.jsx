@@ -1,5 +1,6 @@
 import { Link, Head } from '@inertiajs/inertia-react';
 import HomeLayout from '@/Layouts/HomeLayout';
+import Pagination from '@/Components/Pagination';
 
 export default function Homepage(props) {
   console.log('HOME PAGE ', props)
@@ -11,7 +12,7 @@ export default function Homepage(props) {
       </Head>
       <div className="">
         <div className='grid gap-4 grid-cols-3'>
-          {props?.news?.map((data, index) => (
+          {props?.news?.data?.map((data, index) => (
             <div key={index} className="bg-white p-4 rounded overflow-hidden min-h-[200px] relative">
               <div className='text-xl font-[600] truncate'>{data?.title}</div>
               <p className='text-[12px] text-gray-500'>{data?.description}</p>
@@ -22,6 +23,7 @@ export default function Homepage(props) {
           ))}
         </div>
       </div>
+      <Pagination class="mt-6" links={props?.news?.meta?.links} />
     </HomeLayout>
   )
 }
