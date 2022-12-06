@@ -10,11 +10,12 @@ export default function Homepage(props) {
         <meta name="description" content={props?.description} />
       </Head>
       <div className="">
-        <div className='grid gap-2 grid-cols-6'>
+        <div className='grid gap-4 grid-cols-3'>
           {props?.news?.map((data, index) => (
-            <div key={index} className="bg-white p-2 rounded overflow-hidden">
-              <div className='text-xl font-[600]'>{data?.title}</div>
-              <div className='w-full overflow-hidden'>
+            <div key={index} className="bg-white p-4 rounded overflow-hidden min-h-[200px] relative">
+              <div className='text-xl font-[600] truncate'>{data?.title}</div>
+              <p className='text-[12px] text-gray-500'>{data?.description}</p>
+              <div className='w-full overflow-hidden absolute bottom-4'>
                 <div className='text-[12px] text-gray-500'>{data?.author}</div>
               </div>
             </div>

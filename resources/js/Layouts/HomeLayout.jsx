@@ -4,7 +4,7 @@ import NavLink from '@/Components/NavLink';
 
 const HomeLayout = ({children, auth}) => {
   return (
-    <div className='min-h-screen w-full bg-gray-100'>
+    <div className='min-h-screen w-full'>
         <nav className='bg-white border-b border-gray-100'>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
             <div className="flex justify-between h-16">
@@ -41,7 +41,7 @@ const HomeLayout = ({children, auth}) => {
           </div>
         </nav>
 
-        <main className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4'>{children}</main>
+        <main className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-4'>{children}</main>
     </div>
   )
 }
