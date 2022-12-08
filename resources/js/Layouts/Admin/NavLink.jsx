@@ -26,16 +26,20 @@ const NavLink = ({href, icon, title, submenu}) => {
       >
         {icon ? (
           <div
-            className={cn('flex items-center', {'w-full h-full': minimize})}
+            className={cn('flex items-center')}
             style={{transition: 'display 1s linear'}}
           >{icon}</div>
         ) : ''}
-        <div className={cn("ml-3 text-[16px]", {'hidden': minimize})} style={{transition: 'margin-left .3s linear,opacity .3s ease, visibility .3s ease'}}>{title}</div>
+        <div className={cn("ml-3 text-[16px]", {'hidden group-hover:block': minimize})} style={{transition: 'margin-left .3s linear,opacity .3s ease, visibility .3s ease'}}>{title}</div>
       </Link>
       <ul className={cn({
-        'hidden':!open,
+        'hidden': !open,
         'block': open,
-      })}>
+        'ml-4': !minimize,
+        'group-hover:ml-4': minimize,
+      })}
+      style={{transition: 'margin-left .3s linear,opacity .3s ease, visibility .3s ease'}}
+      >
         <SubNavLink lists={submenu || []} />
       </ul>
     </div>
@@ -57,8 +61,13 @@ const SubNavLink = ({lists}) => {
                 px-4 py-2 font-[500] hover:font-[600] mb-[0.2rem] relative
               "
             >
-              {item?.icon ? item?.icon : ''}
-              <div className={cn("ml-3 text-[16px]", {'invisible': minimize})} style={{transition: 'margin-left .3s linear,opacity .3s ease, visibility .3s ease'}}>{item?.title}</div>
+              {item?.icon ? (
+                <div
+                  className={cn('flex items-center')}
+                  style={{transition: 'display 1s linear'}}
+                >{item?.icon}</div>
+              ) : ''}
+              <div className={cn("ml-3 text-[16px]", {'hidden group-hover:block': minimize})} style={{transition: 'margin-left .3s linear,opacity .3s ease, visibility .3s ease'}}>{item?.title}</div>
             </Link>
           </div>
         </li>

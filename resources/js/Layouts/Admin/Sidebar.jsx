@@ -86,7 +86,7 @@ export default function Sidebar () {
     <>
       <Header />
       <aside className={cn(
-      "bg-black min-h-screen fixed left-0 top-0 bottom-0 shadow-lg overflow-hidden z-[1038]",
+      "group bg-black min-h-screen fixed left-0 top-0 bottom-0 shadow-lg overflow-hidden z-[1038]",
       {
         'w-[250px]': !minimize,
         'w-20 hover:w-[250px]': minimize
