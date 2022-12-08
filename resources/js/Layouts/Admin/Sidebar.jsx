@@ -11,12 +11,12 @@ const SideMenu = [
   {
     title: 'Dashboard',
     href: '/dashboard',
-    icon: <ion-icon name="apps-outline"></ion-icon>
+    icon: <ion-icon name="apps-outline" style={{fontSize: 24}}></ion-icon>
   },
   {
     title: 'Users',
     href: '/users',
-    icon: <ion-icon name="people-outline"></ion-icon>,
+    icon: <ion-icon name="people-outline" style={{fontSize: 24}}></ion-icon>,
     submenus: [
       {
         title: 'Users',
@@ -38,7 +38,7 @@ const SideMenu = [
   {
     title: 'Dashboard',
     href: '/dashboard',
-    icon: <ion-icon name="apps-outline"></ion-icon>,
+    icon: <ion-icon name="apps-outline" style={{fontSize: 24}}></ion-icon>,
     submenus: [
       {
         title: 'Users',
@@ -55,28 +55,28 @@ const SideMenu = [
   {
     title: 'Dashboard',
     href: '/dashboard',
-    icon: <ion-icon name="apps-outline"></ion-icon>
+    icon: <ion-icon name="apps-outline" style={{fontSize: 24}}></ion-icon>
   },
   {
     title: 'Dashboard',
     href: '/dashboard',
-    icon: <ion-icon name="apps-outline"></ion-icon>
+    icon: <ion-icon name="apps-outline" style={{fontSize: 24}}></ion-icon>
   },
   {
     title: 'Dashboard',
     href: '/dashboard',
-    icon: <ion-icon name="apps-outline"></ion-icon>
+    icon: <ion-icon name="apps-outline" style={{fontSize: 24}}></ion-icon>
   },
 ]
 
 export default function Sidebar () {
-  const {dispatch, state: {sideNavigation: {collapse}}} = useAppContext()
+  const {dispatch, state: {sideNavigation: {minimize}}} = useAppContext()
 
   const toggle = () => {
     dispatch({
       type: SIDE_NAVIGATION,
       payload: {
-        collapse: !collapse,
+        minimize: !minimize,
       }
     })
   }
@@ -86,23 +86,27 @@ export default function Sidebar () {
     <>
       <Header />
       <aside className={cn(
-      "bg-black min-h-screen fixed left-0 top-0 bottom-0 shadow-lg overflow-hidden z-[1038] transition-all",
+      "bg-black min-h-screen fixed left-0 top-0 bottom-0 shadow-lg overflow-hidden z-[1038]",
       {
-        'w-[250px]': !collapse,
-        'w-20': collapse
+        'w-[250px]': !minimize,
+        'w-20 hover:w-[250px]': minimize
       }
-      )}>
+      )}
+      style={{transition: 'margin-left .3s ease-in-out, width .3s ease-in-out'}}
+      >
         <div className="h-[70px] relative">
-          <div className="absolute right-4 top-5">
+          <div className="absolute right-4 top-5 hidden">
             <button className="text-lg font-bold text-white" type="button" onClick={toggle}>X</button>
           </div>
         </div>
         <div className="" style={{height: 'calc(100vh - 70px)'}}>
-          <ul>
-            {SideMenu.map((menu, index) => (
-              <li key={index}><NavLinkMemo href={menu?.href} title={menu?.title} icon={menu?.icon} submenu={menu?.submenus} /></li>
-            ))}
-          </ul>
+          <nav className="w-full">
+            <ul className="w-full">
+              {SideMenu.map((menu, index) => (
+                <li key={index}><NavLinkMemo href={menu?.href} title={menu?.title} icon={menu?.icon} submenu={menu?.submenus} /></li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </aside>
     </>

@@ -1,10 +1,12 @@
 import { Link } from '@inertiajs/inertia-react';
 import { useState, createContext, useContext } from 'react';
 import cn from 'classnames';
-import { functions } from 'lodash';
+import { useAppContext } from '@/Providers/AppProvider'
 
 const NavLink = ({href, icon, title, submenu}) => {
   const [open, setOpen] = useState(true);
+
+  const {state: {sideNavigation: {minimize}}} = useAppContext()
 
   const toggleOpen = () => {
     setOpen((previousState) => !previousState);
@@ -12,7 +14,7 @@ const NavLink = ({href, icon, title, submenu}) => {
 
   console.log('NAVLLINK');
   return (
-    <div className="w-full px-2 relative">
+    <div className="w-full px-2 relative" style={{transition: 'width ease-in-out .3s'}}>
       <Link
         href={!submenu?.length ? href : '#'}
         className="
@@ -20,9 +22,15 @@ const NavLink = ({href, icon, title, submenu}) => {
           px-4 py-2 font-[500] hover:font-[600] mb-[0.2rem] relative
         "
         onClick={submenu?.length ? toggleOpen : null}
+        style={{transition: 'width ease-in-out .3s'}}
       >
-        {icon ? icon : ''}
-        <div className="ml-3 text-[16px]">{title}</div>
+        {icon ? (
+          <div
+            className={cn('flex items-center', {'w-full h-full': minimize})}
+            style={{transition: 'display 1s linear'}}
+          >{icon}</div>
+        ) : ''}
+        <div className={cn("ml-3 text-[16px]", {'hidden': minimize})} style={{transition: 'margin-left .3s linear,opacity .3s ease, visibility .3s ease'}}>{title}</div>
       </Link>
       <ul className={cn({
         'hidden':!open,
@@ -35,6 +43,8 @@ const NavLink = ({href, icon, title, submenu}) => {
 }
 
 const SubNavLink = ({lists}) => {
+  const {state: {sideNavigation: {minimize}}} = useAppContext()
+
   return (
     <>
       {lists?.map((item, index) => (
@@ -48,7 +58,7 @@ const SubNavLink = ({lists}) => {
               "
             >
               {item?.icon ? item?.icon : ''}
-              <div className="ml-3 text-[12px]">{item?.title}</div>
+              <div className={cn("ml-3 text-[16px]", {'invisible': minimize})} style={{transition: 'margin-left .3s linear,opacity .3s ease, visibility .3s ease'}}>{item?.title}</div>
             </Link>
           </div>
         </li>

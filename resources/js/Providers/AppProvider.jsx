@@ -3,7 +3,7 @@ import sideNavigationReducer from '@/Reducers/sideNavigation'
 
 const initialize = {
   sideNavigation: {
-    collapse: false,
+    minimize: false,
   }
 }
 

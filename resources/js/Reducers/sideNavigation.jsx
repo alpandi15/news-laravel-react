@@ -5,7 +5,7 @@ export default function sideNavigationReducer (state, action) {
     case SIDE_NAVIGATION:
       return {
         ...state,
-        collapse: action.payload.collapse,
+        minimize: action.payload.minimize,
       }
       default:
         return state
