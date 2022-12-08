@@ -10,62 +10,50 @@ const NavLinkMemo = memo(NavLink)
 const SideMenu = [
   {
     title: 'Dashboard',
-    href: '/dashboard',
+    name: 'dashboard',
+    href: route('dashboard'),
     icon: <ion-icon name="apps-outline" style={{fontSize: 24}}></ion-icon>
   },
   {
     title: 'Users',
-    href: '/users',
+    href: route('dashboard'),
+    name: 'users',
     icon: <ion-icon name="people-outline" style={{fontSize: 24}}></ion-icon>,
-    submenus: [
-      {
-        title: 'Users',
-        href: '/users',
-        icon: <ion-icon name="people-outline"></ion-icon>,
-      },
-      {
-        title: 'Users',
-        href: '/users',
-        icon: <ion-icon name="people-outline"></ion-icon>,
-      },
-      {
-        title: 'Users',
-        href: '/users',
-        icon: <ion-icon name="people-outline"></ion-icon>,
-      },
-    ]
+    // submenus: [
+    //   {
+    //     title: 'Users',
+    //     href: '/users',
+    //     icon: <ion-icon name="people-outline"></ion-icon>,
+    //   },
+    //   {
+    //     title: 'Users',
+    //     href: '/users',
+    //     icon: <ion-icon name="people-outline"></ion-icon>,
+    //   },
+    //   {
+    //     title: 'Users',
+    //     href: '/users',
+    //     icon: <ion-icon name="people-outline"></ion-icon>,
+    //   },
+    // ]
   },
   {
-    title: 'Dashboard',
-    href: '/dashboard',
-    icon: <ion-icon name="apps-outline" style={{fontSize: 24}}></ion-icon>,
-    submenus: [
-      {
-        title: 'Users',
-        href: '/users',
-        icon: <ion-icon name="people-outline"></ion-icon>,
-      },
-      {
-        title: 'Users',
-        href: '/users',
-        icon: <ion-icon name="people-outline"></ion-icon>,
-      },
-    ]
-  },
-  {
-    title: 'Dashboard',
-    href: '/dashboard',
-    icon: <ion-icon name="apps-outline" style={{fontSize: 24}}></ion-icon>
-  },
-  {
-    title: 'Dashboard',
-    href: '/dashboard',
-    icon: <ion-icon name="apps-outline" style={{fontSize: 24}}></ion-icon>
-  },
-  {
-    title: 'Dashboard',
-    href: '/dashboard',
-    icon: <ion-icon name="apps-outline" style={{fontSize: 24}}></ion-icon>
+    title: 'Profile',
+    href: route('profile.edit'),
+    name: 'profile.edit',
+    icon: <ion-icon name="person-outline" style={{fontSize: 24}}></ion-icon>,
+    // submenus: [
+    //   {
+    //     title: 'Users',
+    //     href: '/users',
+    //     icon: <ion-icon name="people-outline"></ion-icon>,
+    //   },
+    //   {
+    //     title: 'Users',
+    //     href: '/users',
+    //     icon: <ion-icon name="people-outline"></ion-icon>,
+    //   },
+    // ]
   },
 ]
 
@@ -103,7 +91,7 @@ export default function Sidebar () {
           <nav className="w-full">
             <ul className="w-full">
               {SideMenu.map((menu, index) => (
-                <li key={index}><NavLinkMemo href={menu?.href} title={menu?.title} icon={menu?.icon} submenu={menu?.submenus} /></li>
+                <li key={index}><NavLinkMemo active={route().current(menu?.name)} href={menu?.href} title={menu?.title} icon={menu?.icon} submenu={menu?.submenus} /></li>
               ))}
             </ul>
           </nav>

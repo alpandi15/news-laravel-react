@@ -14,7 +14,7 @@ export default function AdminLayout ({children}) {
       <SidebarMemo />
       <main
         className={cn(
-        "md:ml-[250px] bg-green-200 transition-all",
+        "md:ml-[250px] bg-gray-100 transition-all",
         {
           "md:ml-[250px]": !minimize,
           "md:ml-20": minimize,

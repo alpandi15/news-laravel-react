@@ -3,7 +3,7 @@ import { useState, createContext, useContext } from 'react';
 import cn from 'classnames';
 import { useAppContext } from '@/Providers/AppProvider'
 
-const NavLink = ({href, icon, title, submenu}) => {
+const NavLink = ({href, icon, title, submenu, active}) => {
   const [open, setOpen] = useState(true);
 
   const {state: {sideNavigation: {minimize}}} = useAppContext()
@@ -17,10 +17,14 @@ const NavLink = ({href, icon, title, submenu}) => {
     <div className="w-full px-2 relative" style={{transition: 'width ease-in-out .3s'}}>
       <Link
         href={!submenu?.length ? href : '#'}
-        className="
-          h-12 w-full hover:bg-gray-600 flex items-center text-white rounded-xl
-          px-4 py-2 font-[500] hover:font-[600] mb-[0.2rem] relative
-        "
+        className={
+          cn(
+            `h-12 w-full hover:bg-gray-600 flex items-center 
+            text-white rounded-xl px-4 py-2 font-[500] hover:font-[600] mb-[0.2rem] relative`,
+            {
+              'bg-gray-600': active,
+            }
+          )}
         onClick={submenu?.length ? toggleOpen : null}
         style={{transition: 'width ease-in-out .3s'}}
       >
