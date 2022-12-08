@@ -2,6 +2,8 @@ import { useState, memo } from "react"
 import cn from "classnames"
 import Header from "./Header"
 import NavLink from "./NavLink"
+import {useAppContext} from '@/Providers/AppProvider'
+import { SIDE_NAVIGATION } from "@/Reducers/types"
 
 const NavLinkMemo = memo(NavLink)
 
@@ -68,9 +70,16 @@ const SideMenu = [
 ]
 
 export default function Sidebar () {
-  const [active, setActive] = useState(false)
+  const {dispatch, state: {sideNavigation: {collapse}}} = useAppContext()
 
-  const toggle = () => setActive(!active)
+  const toggle = () => {
+    dispatch({
+      type: SIDE_NAVIGATION,
+      payload: {
+        collapse: !collapse,
+      }
+    })
+  }
 
   console.log('Sidebar')
   return (
@@ -79,8 +88,8 @@ export default function Sidebar () {
       <aside className={cn(
       "bg-black min-h-screen fixed left-0 top-0 bottom-0 shadow-lg overflow-hidden z-[1038] transition-all",
       {
-        'w-[250px]': !active,
-        'w-20': active
+        'w-[250px]': !collapse,
+        'w-20': collapse
       }
       )}>
         <div className="h-[70px] relative">
