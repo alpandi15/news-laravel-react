@@ -57,7 +57,7 @@ const SideMenu = [
   },
 ]
 
-export default function Sidebar () {
+export default function Sidebar ({auth}) {
   const {dispatch, state: {sideNavigation: {minimize}}} = useAppContext()
 
   const toggle = () => {
@@ -72,12 +72,12 @@ export default function Sidebar () {
   console.log('Sidebar')
   return (
     <>
-      <Header />
+      <Header auth={auth} />
       <aside className={cn(
       "group bg-black min-h-screen fixed left-0 top-0 bottom-0 shadow-lg overflow-hidden z-[1038]",
       {
         'w-[250px]': !minimize,
-        'w-20 hover:w-[250px]': minimize
+        'w-20 hover:w-[250px]': minimize,
       }
       )}
       style={{transition: 'margin-left .3s ease-in-out, width .3s ease-in-out'}}

@@ -6,12 +6,12 @@ import cn from 'classnames'
 
 const SidebarMemo = memo(Sidebar)
 
-export default function AdminLayout ({children}) {
-  console.log('Admin Layouts')
+export default function AdminLayout ({auth, children}) {
+  console.log('Admin Layouts ', auth)
   const {state: {sideNavigation: {minimize}}} = useAppContext()
   return (
     <>
-      <SidebarMemo />
+      <SidebarMemo auth={auth} />
       <main
         className={cn(
         "md:ml-[250px] bg-gray-100 transition-all",
