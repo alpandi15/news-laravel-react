@@ -7,6 +7,7 @@ const NavContext = createContext();
 
 const LinkContent = ({isSubmenu, children, href, active}) => {
   const { open, toggleOpen } = useContext(NavContext);
+  const {state: {sideNavigation: {minimize}}} = useAppContext()
 
   if (isSubmenu) {
     return (
@@ -25,7 +26,11 @@ const LinkContent = ({isSubmenu, children, href, active}) => {
         {children}
 
         <i
-          className={cn('text-white absolute top-4 right-3 pointer-events-none flex items-center justify-center', {'transform rotate-90': open})}
+          className={cn('text-white absolute top-4 right-3 pointer-events-none flex items-center justify-center',
+          {
+            'transform rotate-90': open,
+            'hidden group-hover:flex': minimize
+          })}
           style={{transition: 'transform ease-in-out .3s,-webkit-transform ease-in-out .3s'}}
         >
           <ion-icon name="chevron-forward-outline" style={{fontSize: 18}}></ion-icon>
@@ -66,7 +71,7 @@ const NavLink = ({href, icon, title, submenu, name}) => {
           "w-full px-2 relative"
         )}
       >
-        <LinkContent active={route().current(name)} href={href} isSubmenu={!!submenu?.length}>
+        <LinkContent active={route().current(`${name}*`)} href={href} isSubmenu={!!submenu?.length}>
           {icon ? (
             <div
               className={cn('flex items-center')}
@@ -75,11 +80,9 @@ const NavLink = ({href, icon, title, submenu, name}) => {
           ) : ''}
           <div className={cn("ml-3 text-[16px] transition delay-300", {'opacity-0 group-hover:opacity-100': minimize})}>{title}</div>
         </LinkContent>
-        <ul className={cn({
+        <ul className={cn('bg-white bg-opacity-10 rounded-[5px]', {
           'hidden': !open,
           'block': open,
-          'ml-4': !minimize,
-          'group-hover:ml-4': minimize,
         })}
         style={{transition: '.3s ease'}}
         >
@@ -92,31 +95,40 @@ const NavLink = ({href, icon, title, submenu, name}) => {
 
 const SubNavLink = ({lists}) => {
   const {state: {sideNavigation: {minimize}}} = useAppContext()
+  const { setOpen } = useContext(NavContext);
 
+  console.log('ITEM ', lists)
   return (
     <>
-      {lists?.map((item, index) => (
-        <li key={index}>
-          <div className="w-full px-2 relative">
-            <Link
-              href={item?.href}
-              className={cn(
-                "h-10 w-full bg-white hover:bg-gray-600 hover:text-white flex items-center text-black rounded-xl px-4 py-2 font-[500] hover:font-[600] mb-[0.2rem] relative",
-                {
-                  'bg-red-400': route().current(item?.name)
-                })}
-            >
-              {item?.icon ? (
-                <div
-                  className={cn('flex items-center')}
-                  style={{transition: 'display 1s linear'}}
-                >{item?.icon}</div>
-              ) : ''}
-              <div className={cn("ml-3 text-[16px]", {'hidden group-hover:block': minimize})} style={{transition: 'margin-left .3s linear,opacity .3s ease, visibility .3s ease'}}>{item?.title}</div>
-            </Link>
-          </div>
-        </li>
-      ))}
+      {lists?.map((item, index) => {
+        let subActive = false
+        if (item?.name && route().current(item?.name)) {
+          subActive = true
+          {/* setOpen(true) */}
+        }
+        return (
+          <li key={index}>
+            <div className="w-full relative">
+              <Link
+                href={item?.href}
+                className={cn(
+                  "h-10 w-full text-white hover:bg-gray-800 flex items-center rounded-[5px] px-6 py-2 font-[500] hover:font-[600] mb-[0.2rem] relative",
+                  {
+                    'bg-red-400': subActive
+                  })}
+              >
+                {item?.icon ? (
+                  <div
+                    className={cn('flex items-center')}
+                    style={{transition: 'display 1s linear'}}
+                  >{item?.icon}</div>
+                ) : ''}
+                <div className={cn("ml-3 text-[14px]", {'hidden group-hover:block': minimize})} style={{transition: 'margin-left .3s linear,opacity .3s ease, visibility .3s ease'}}>{item?.title}</div>
+              </Link>
+            </div>
+          </li>
+        )
+      })}
     </>
   )
 }

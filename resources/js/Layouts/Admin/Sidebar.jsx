@@ -39,18 +39,19 @@ const SideMenu = [
   },
   {
     title: 'Profile',
-    name: 'profile.edit',
+    name: 'profile',
     icon: <ion-icon name="person-outline" style={{fontSize: 24}}></ion-icon>,
     submenus: [
       {
-        title: 'Users',
+        title: 'Profile',
         name: 'profile.edit',
         href: route('profile.edit'),
         icon: <ion-icon name="people-outline"></ion-icon>,
       },
       {
-        title: 'Users',
-        href: '/users',
+        title: 'Dashboard',
+        href: route('dashboard'),
+        name: 'dashboard',
         icon: <ion-icon name="people-outline"></ion-icon>,
       },
     ]
