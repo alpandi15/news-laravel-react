@@ -97,7 +97,6 @@ const SubNavLink = ({lists}) => {
   const {state: {sideNavigation: {minimize}}} = useAppContext()
   const { setOpen } = useContext(NavContext);
 
-  console.log('ITEM ', lists)
   return (
     <>
       {lists?.map((item, index) => {
