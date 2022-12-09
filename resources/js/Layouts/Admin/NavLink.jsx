@@ -48,7 +48,8 @@ const LinkContent = ({isSubmenu, children, href, active}) => {
           {
             'bg-gray-800': active
           }
-        )}
+        )
+      }
     >
     {children}
     </Link>

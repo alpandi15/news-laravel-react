@@ -25,7 +25,7 @@ export default function Header ({auth}) {
     <nav
       className={
         cn(
-          "h-[60px] flex items-center",
+          "fixed top-0 right-0 left-0 h-[60px] flex items-center",
           {
             "md:ml-[250px]": !minimize,
             "md:ml-20": minimize,
