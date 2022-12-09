@@ -6,6 +6,9 @@ import { createInertiaApp } from '@inertiajs/inertia-react';
 import { InertiaProgress } from '@inertiajs/progress';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import AppProvider from '@/Providers/AppProvider'
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
@@ -15,7 +18,12 @@ createInertiaApp({
     setup({ el, App, props }) {
         const root = createRoot(el);
 
-        root.render(<AppProvider><App {...props} /></AppProvider>);
+        root.render(
+            <AppProvider>
+                <App {...props} />
+                <ToastContainer />
+            </AppProvider>
+        );
     },
 });
 

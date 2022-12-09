@@ -4,6 +4,8 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Link, useForm, usePage } from '@inertiajs/inertia-react';
 import { Transition } from '@headlessui/react';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className }) {
     const user = usePage().props.auth.user;
@@ -18,6 +20,12 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
 
         patch(route('profile.update'));
     };
+
+    useEffect(() => {
+        if (recentlySuccessful) {
+            toast.success('Saved.', {position: toast.POSITION.TOP_RIGHT, pauseOnHover: false})
+        }
+    }, [recentlySuccessful])
 
     return (
         <section className={className}>
