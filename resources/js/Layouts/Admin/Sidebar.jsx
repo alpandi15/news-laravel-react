@@ -19,41 +19,41 @@ const SideMenu = [
     href: route('dashboard'),
     name: 'users',
     icon: <ion-icon name="people-outline" style={{fontSize: 24}}></ion-icon>,
-    // submenus: [
-    //   {
-    //     title: 'Users',
-    //     href: '/users',
-    //     icon: <ion-icon name="people-outline"></ion-icon>,
-    //   },
-    //   {
-    //     title: 'Users',
-    //     href: '/users',
-    //     icon: <ion-icon name="people-outline"></ion-icon>,
-    //   },
-    //   {
-    //     title: 'Users',
-    //     href: '/users',
-    //     icon: <ion-icon name="people-outline"></ion-icon>,
-    //   },
-    // ]
+    submenus: [
+      {
+        title: 'Users',
+        href: '/users',
+        icon: <ion-icon name="people-outline"></ion-icon>,
+      },
+      {
+        title: 'Users',
+        href: '/users',
+        icon: <ion-icon name="people-outline"></ion-icon>,
+      },
+      {
+        title: 'Users',
+        href: '/users',
+        icon: <ion-icon name="people-outline"></ion-icon>,
+      },
+    ]
   },
   {
     title: 'Profile',
     href: route('profile.edit'),
     name: 'profile.edit',
     icon: <ion-icon name="person-outline" style={{fontSize: 24}}></ion-icon>,
-    // submenus: [
-    //   {
-    //     title: 'Users',
-    //     href: '/users',
-    //     icon: <ion-icon name="people-outline"></ion-icon>,
-    //   },
-    //   {
-    //     title: 'Users',
-    //     href: '/users',
-    //     icon: <ion-icon name="people-outline"></ion-icon>,
-    //   },
-    // ]
+    submenus: [
+      {
+        title: 'Users',
+        href: '/users',
+        icon: <ion-icon name="people-outline"></ion-icon>,
+      },
+      {
+        title: 'Users',
+        href: '/users',
+        icon: <ion-icon name="people-outline"></ion-icon>,
+      },
+    ]
   },
 ]
 
@@ -91,7 +91,7 @@ export default function Sidebar ({auth}) {
           <nav className="w-full">
             <ul className="w-full">
               {SideMenu.map((menu, index) => (
-                <li key={index}><NavLinkMemo active={route().current(menu?.name)} href={menu?.href} title={menu?.title} icon={menu?.icon} submenu={menu?.submenus} /></li>
+                <li key={index}><NavLinkMemo name={menu?.name} href={menu?.href} title={menu?.title} icon={menu?.icon} submenu={menu?.submenus} /></li>
               ))}
             </ul>
           </nav>
