@@ -99,11 +99,12 @@ const SubNavLink = ({lists}) => {
         <li key={index}>
           <div className="w-full px-2 relative">
             <Link
-              href={!lists?.submenu?.length ? lists?.href : '#'}
-              className="
-                h-10 w-full bg-white hover:bg-gray-600 hover:text-white flex items-center text-black rounded-xl
-                px-4 py-2 font-[500] hover:font-[600] mb-[0.2rem] relative
-              "
+              href={item?.href}
+              className={cn(
+                "h-10 w-full bg-white hover:bg-gray-600 hover:text-white flex items-center text-black rounded-xl px-4 py-2 font-[500] hover:font-[600] mb-[0.2rem] relative",
+                {
+                  'bg-red-400': route().current(item?.name)
+                })}
             >
               {item?.icon ? (
                 <div
