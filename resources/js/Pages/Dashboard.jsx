@@ -8,8 +8,21 @@ export default function Dashboard(props) {
             errors={props.errors}
         >
             <Head title="Dashboard" />
-            <div>
-                Main
+            <div className='bg-white p-4'>
+                lorem ipsum dolor sit amet, consectetur adip aspect resources lorem ipsum dolor sit amet lorem ipsum dolor sit amet 
+                lorem ipsum dolor sit amet, consectetur adip aspect resources lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                lorem ipsum dolor sit amet, consectetur adip aspect resources lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                lorem ipsum dolor sit amet, consectetur adip aspect resources lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                lorem ipsum dolor sit amet, consectetur adip aspect resources lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                lorem ipsum dolor sit amet, consectetur adip aspect resources lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                lorem ipsum dolor sit amet, consectetur adip aspect resources lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                lorem ipsum dolor sit amet, consectetur adip aspect resources lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                lorem ipsum dolor sit amet, consectetur adip aspect resources lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                lorem ipsum dolor sit amet, consectetur adip aspect resources lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                lorem ipsum dolor sit amet, consectetur adip aspect resources lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                lorem ipsum dolor sit amet, consectetur adip aspect resources lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                lorem ipsum dolor sit amet, consectetur adip aspect resources lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                lorem ipsum dolor sit amet, consectetur adip aspect resources lorem ipsum dolor sit amet lorem ipsum dolor sit amet
             </div>
         </AdminLayout>
     );

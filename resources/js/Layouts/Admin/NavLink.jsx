@@ -7,21 +7,30 @@ const NavContext = createContext();
 
 const LinkContent = ({isSubmenu, children, href, active}) => {
   const { open, toggleOpen } = useContext(NavContext);
+
   if (isSubmenu) {
     return (
       <div
         className={
           cn(
             `h-12 w-full hover:bg-gray-600 flex items-center 
-            text-white rounded-xl px-4 py-2 font-[500] hover:font-[600] mb-[0.2rem] relative cursor-pointer`,
+            text-white rounded-[5px] px-5 py-2 font-[500] hover:font-[600] mb-[0.2rem] relative cursor-pointer transition-all`,
             {
               'bg-gray-800': active,
               'bg-gray-600': open,
             }
           )}
-        style={{transition: 'width ease-in-out .3s'}}
         onClick={() => toggleOpen()}
-      >{children}</div>
+      >
+        {children}
+
+        <i
+          className={cn('text-white absolute top-4 right-3 pointer-events-none flex items-center justify-center', {'transform rotate-90': open})}
+          style={{transition: 'transform ease-in-out .3s,-webkit-transform ease-in-out .3s'}}
+        >
+          <ion-icon name="chevron-forward-outline" style={{fontSize: 18}}></ion-icon>
+        </i>
+      </div>
     )
   }
   return (
@@ -30,12 +39,11 @@ const LinkContent = ({isSubmenu, children, href, active}) => {
       className={
         cn(
           `h-12 w-full hover:bg-gray-600 flex items-center 
-          text-white rounded-xl px-4 py-2 font-[500] hover:font-[600] mb-[0.2rem] relative`,
+          text-white rounded-[5px] px-5 py-2 font-[500] hover:font-[600] mb-[0.2rem] relative transition-all`,
           {
-            'bg-gray-800': active,
+            'bg-gray-800': active
           }
         )}
-      style={{transition: 'width ease-in-out .3s'}}
     >
     {children}
     </Link>
@@ -51,10 +59,13 @@ const NavLink = ({href, icon, title, submenu, name}) => {
     setOpen((previousState) => !previousState);
   };
 
-  console.log('NAVLLINK');
   return (
     <NavContext.Provider value={{ open, setOpen, toggleOpen }}>
-      <div className="w-full px-2 relative" style={{transition: 'width ease-in-out .3s'}}>
+      <div
+        className={cn(
+          "w-full px-2 relative"
+        )}
+      >
         <LinkContent active={route().current(name)} href={href} isSubmenu={!!submenu?.length}>
           {icon ? (
             <div
@@ -62,16 +73,15 @@ const NavLink = ({href, icon, title, submenu, name}) => {
               style={{transition: 'display 1s linear'}}
             >{icon}</div>
           ) : ''}
-          <div className={cn("ml-3 text-[16px]", {'hidden group-hover:block': minimize})} style={{transition: 'margin-left .3s linear,opacity .3s ease, visibility .3s ease'}}>{title}</div>
+          <div className={cn("ml-3 text-[16px] transition delay-300", {'opacity-0 group-hover:opacity-100': minimize})}>{title}</div>
         </LinkContent>
-
         <ul className={cn({
           'hidden': !open,
           'block': open,
           'ml-4': !minimize,
           'group-hover:ml-4': minimize,
         })}
-        style={{transition: 'display .3s linear,opacity .3s ease, visibility .3s ease'}}
+        style={{transition: '.3s ease'}}
         >
           <SubNavLink lists={submenu || []} />
         </ul>

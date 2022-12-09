@@ -14,7 +14,7 @@ export default function AdminLayout ({auth, children}) {
       <SidebarMemo auth={auth} />
       <main
         className={cn(
-        "md:ml-[250px] bg-gray-100 transition-all",
+        "md:ml-[250px] bg-gray-100 transition-all px-4 py-3",
         {
           "md:ml-[250px]": !minimize,
           "md:ml-20": minimize,

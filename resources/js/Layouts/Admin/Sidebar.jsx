@@ -82,12 +82,12 @@ export default function Sidebar ({auth}) {
       )}
       style={{transition: 'margin-left .3s ease-in-out, width .3s ease-in-out'}}
       >
-        <div className="h-[70px] relative">
+        <div className="h-[60px] relative">
           <div className="absolute right-4 top-5 hidden">
             <button className="text-lg font-bold text-white" type="button" onClick={toggle}>X</button>
           </div>
         </div>
-        <div className="" style={{height: 'calc(100vh - 70px)'}}>
+        <div className="pt-4" style={{height: 'calc(100vh - 60px)'}}>
           <nav className="w-full">
             <ul className="w-full">
               {SideMenu.map((menu, index) => (
