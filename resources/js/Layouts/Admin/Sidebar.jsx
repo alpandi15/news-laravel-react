@@ -22,16 +22,19 @@ const SideMenu = [
     submenus: [
       {
         title: 'Users',
+        name: 'users',
         href: '/users',
         icon: <ion-icon name="people-outline"></ion-icon>,
       },
       {
         title: 'Users',
+        name: 'users',
         href: '/users',
         icon: <ion-icon name="people-outline"></ion-icon>,
       },
       {
         title: 'Users',
+        name: 'users',
         href: '/users',
         icon: <ion-icon name="people-outline"></ion-icon>,
       },
