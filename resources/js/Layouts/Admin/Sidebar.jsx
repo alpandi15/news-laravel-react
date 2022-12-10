@@ -86,7 +86,7 @@ export default function Sidebar ({auth}) {
       )}
       style={{transition: 'margin-left .3s ease-in-out, width .3s ease-in-out, left .3s ease-in-out'}}
       >
-        <div className="h-[60px] relative border-b-[1px] border-b-gray-700 overflow-hidden">
+        <div className="h-[60px] relative border-b-[1px] border-b-gray-700">
           <div className="w-full h-full flex items-center px-4">
             <div className="flex items-center">
               <img
