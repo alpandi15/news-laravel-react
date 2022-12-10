@@ -4,6 +4,7 @@ import Header from "./Header"
 import NavLink from "./NavLink"
 import {useAppContext} from '@/Providers/AppProvider'
 import { SIDE_NAVIGATION } from "@/Reducers/types"
+import { Transition } from '@headlessui/react'
 
 const NavLinkMemo = memo(NavLink)
 
@@ -85,9 +86,17 @@ export default function Sidebar ({auth}) {
       )}
       style={{transition: 'margin-left .3s ease-in-out, width .3s ease-in-out, left .3s ease-in-out'}}
       >
-        <div className="h-[60px] relative border-b-[1px] border-b-gray-700">
+        <div className="h-[60px] relative border-b-[1px] border-b-gray-700 overflow-hidden">
           <div className="w-full h-full flex items-center px-4">
-            <div className="text-white font-bold text-[24px]">LOGO</div>
+            <div className="flex items-center">
+              <img
+                alt="logo" src="https://dummyimage.com/40x40/fff/000"
+                className="w-[40px] h-[40px] rounded-full object-cover"
+              />
+            </div>
+            <div className={cn('ml-2 transition', {'hidden group-hover:block': minimize})}>
+              <div className="text-white font-bold text-[22px]">COMPANY</div>
+            </div>
           </div>
           <div className="absolute -right-4 top-3 sm:hidden z-10 flex items-center justify-center">
             <button className="w-[40px] h-[40px] text-lg font-bold text-white flex items-center justify-center bg-black rounded-[50%] border-solid" type="button" onClick={toggle}>
